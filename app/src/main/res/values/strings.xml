@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">SensorTask</string>
+    <!-- MainActivity -->
+    <string name="header">Choose Sensor</string>
+
+    <string name="light">Light</string>
+    <string name="lightDesc">Light brightness</string>
+
+    <string name="proximity">Proximity</string>
+    <string name="proximityDesc">Proximity condition</string>
+
+    <string name="accelerometer">Accelerometer</string>
+    <string name="accelerometerDesc">Accelerometer position</string>
+
+    <string name="gyroscope">Gyroscope</string>
+    <string name="gyroscopeDesc">Gyroscope value</string>
+
+    <!-- LightAct -->
+    <string name="lightTitle">Light Sensor Data</string>
+    <!-- ProximityAct -->
+    <string name="proximityTitle">Proximity Sensor Data</string>
+    <!-- AccelerometerAct -->
+    <string name="accelerometerTitle">Accelerometer Sensor Data</string>
+    <!-- GyroscopeAct -->
+    <string name="gyroscopeTitle">Gyroscope Sensor Data</string>
+
+</resources>
