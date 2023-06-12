@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.lifecycle.MutableLiveData;
@@ -37,11 +38,12 @@ public class SensorSQLiteHelper extends SQLiteOpenHelper {
     public static final String COL_GYROSCOPE_Y      = "GYROSCOPE_Y";
     public static final String COL_GYROSCOPE_Z      = "GYROSCOPE_Z";
 
-
+    Context context;
 
     // Creating Constructor
     public SensorSQLiteHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, 1);
+        this.context = context;
     }
 
     // Creating Database
@@ -187,7 +189,7 @@ public class SensorSQLiteHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(query, null);  // Getting the cursor
         cursor.moveToFirst();       // Moving cursor to the first
         SensorDataModel model = null;
-        if(cursor != null){
+        if(cursor != null && cursor.moveToFirst()){
                 String dateTime = cursor.getString(1);
                 String light = cursor.getString(2);
                 String proximity = cursor.getString(3);
@@ -199,8 +201,11 @@ public class SensorSQLiteHelper extends SQLiteOpenHelper {
                 String gyroscope_z = cursor.getString(9);
 
                 model = new SensorDataModel(dateTime, light, proximity, accelerometer_x, accelerometer_y, accelerometer_z, gyroscope_x, gyroscope_y, gyroscope_z);
+        }else{
+            //Toast.makeText(context, "", Toast.LENGTH_SHORT).show();
+            cursor.close(); // Closing cursor for memory leak
+            return null;
         }
-        cursor.close(); // Closing cursor for memory leak
         sensorData = new MutableLiveData<>(model);  // Initializing proximityDataList
         sensorData.setValue(model); // Setting value
         return sensorData;

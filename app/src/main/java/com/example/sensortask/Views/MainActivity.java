@@ -59,10 +59,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void getRecentData() {
         recentData = sensorViewModel.getRecentSensorData();
-        binding.lightValueTV.setText(recentData.getValue().getLight());
-        binding.proximityValueTV.setText(recentData.getValue().getProximity());
-        binding.accelerometerValueTV.setText("X: "+recentData.getValue().getAccelerometer_x()+" Y: "+recentData.getValue().getAccelerometer_y()+" Z: "+recentData.getValue().getAccelerometer_y());
-        binding.gyroscopeValueTV.setText("X: "+recentData.getValue().getGyroscope_x()+" Y: "+recentData.getValue().getGyroscope_y()+" Z: "+recentData.getValue().getGyroscope_z());
+        if(recentData != null){
+            binding.lightValueTV.setText(recentData.getValue().getLight());
+            binding.proximityValueTV.setText(recentData.getValue().getProximity());
+            binding.accelerometerValueTV.setText("X: " + recentData.getValue().getAccelerometer_x() + " Y: " + recentData.getValue().getAccelerometer_y() + " Z: " + recentData.getValue().getAccelerometer_y());
+            binding.gyroscopeValueTV.setText("X: " + recentData.getValue().getGyroscope_x() + " Y: " + recentData.getValue().getGyroscope_y() + " Z: " + recentData.getValue().getGyroscope_z());
+        }else{
+            binding.lightValueTV.setText("Insert value");
+            binding.proximityValueTV.setText("Insert value");
+            binding.accelerometerValueTV.setText("Insert value");
+            binding.gyroscopeValueTV.setText("Insert value");
+        }
     }
 
     @Override
