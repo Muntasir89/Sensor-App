@@ -59,7 +59,7 @@ public class SensorDataRepo{
 
     // Inserting Data
  public void insertSensorData(String dateTime,String  light,String  proximity,String  accelerometer_x,String  accelerometer_y,String  accelerometer_z,String  gyroscope_x,String  gyroscope_y,String  gyroscope_z) {
-     Log.e(TAG, "notifyInsertData:");
+     //Log.e(TAG, "notifyInsertData:");
      sensorSQLiteHelper.insertData(dateTime, light, proximity, accelerometer_x, accelerometer_y, accelerometer_z, gyroscope_x, gyroscope_y, gyroscope_z);
     }
     public MutableLiveData<SensorDataModel> getRecentSensorData(){

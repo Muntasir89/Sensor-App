@@ -32,7 +32,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     SensorViewModel sensorViewModel;
 
     private static final String TAG = "MainActivity";
-    String dateTime, light, proximity, accelerometer_x, accelerometer_y, accelerometer_z, gyroscope_x, gyroscope_y, gyroscope_z;
+    String dateTime, light="No value available", proximity="No value available", accelerometer_x="No value available",
+            accelerometer_y="No value available", accelerometer_z="No value available", gyroscope_x="No value available",
+            gyroscope_y="No value available", gyroscope_z="No value available";
     SensorDataProcess sensorDataProcess;
 
     MutableLiveData<SensorDataModel> recentData = null;
@@ -93,10 +95,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void updateCurrentData() {
-        binding.lightValueTV.setText(light.substring(0, Math.min(light.length(), 10)));
-        binding.proximityValueTV.setText(proximity.substring(0, Math.min(proximity.length(), 10)));
-        binding.accelerometerValueTV.setText("X: "+accelerometer_x.substring(0, Math.min(accelerometer_x.length(), 10))+" Y: "+accelerometer_y.substring(0, Math.min(accelerometer_y.length(), 10))+" Z: "+accelerometer_z.substring(0, Math.min(accelerometer_z.length(), 10)));
-        binding.gyroscopeValueTV.setText("X: "+gyroscope_x.substring(0, Math.min(gyroscope_x.length(), 10))+" Y: "+gyroscope_y.substring(0, Math.min(gyroscope_y.length(), 10))+" Z: "+gyroscope_z.substring(0, Math.min(gyroscope_z.length(), 10)));
+        binding.lightValueTV.setText(light);
+        binding.proximityValueTV.setText(proximity);
+        if(accelerometer_x!="No value available")
+            binding.accelerometerValueTV.setText("X: "+accelerometer_x.substring(0, Math.min(accelerometer_x.length(), 10))+" Y: "+accelerometer_y.substring(0, Math.min(accelerometer_y.length(), 10))+" Z: "+accelerometer_z.substring(0, Math.min(accelerometer_z.length(), 10)));
+        else
+            binding.accelerometerValueTV.setText("No value available");
+        if(gyroscope_x != "No value available")
+            binding.gyroscopeValueTV.setText("X: "+gyroscope_x.substring(0, Math.min(gyroscope_x.length(), 10))+" Y: "+gyroscope_y.substring(0, Math.min(gyroscope_y.length(), 10))+" Z: "+gyroscope_z.substring(0, Math.min(gyroscope_z.length(), 10)));
+        else
+            binding.gyroscopeValueTV.setText("No value available");
     }
 
     private void insertData() {
@@ -126,7 +134,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
-    public void getGyroscopeSensorsData(String gyroscope_x, String gyroscope_y, String gyroscope_z) {
+    public void getGyroscopeSensorsData(String gyroscope_x, String gyroscope_y, String gyroscope_z){
         this.gyroscope_x = gyroscope_x;
         this.gyroscope_y = gyroscope_y;
         this.gyroscope_z = gyroscope_z;
